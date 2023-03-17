@@ -1,0 +1,119 @@
+//Create a user
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "name" : "panita",
+    "email" : "panita@gmail.com",
+    "password" : "arteaga30",
+    "confPassword" : "arteaga30",
+    "role": "user"
+}
+
+###
+// get All Users
+GET http://localhost:5000/users
+
+###
+//Get Singles User
+GET http://localhost:5000/users/c22bbe96-7c0c-497d-8a67-96f760c35ef3
+
+###
+//Update a user
+PATCH http://localhost:5000/users/c22bbe96-7c0c-497d-8a67-96f760c35ef3
+Content-Type: application/json
+
+{
+    "name" : "panita actualizadp",
+    "email" : "panita@gmail.com",
+    "password" : "",
+    "confPassword" : "",
+    "role": "user"
+}
+
+###
+//delete user
+DELETE http://localhost:5000/users/c22bbe96-7c0c-497d-8a67-96f760c35ef3
+
+###
+// Login User
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email" : "panita@gmail.com",
+    "password" : "arteaga30"
+}
+
+###
+GET  http://localhost:5000/me
+
+###
+//delete user
+DELETE http://localhost:5000/logout
+
+###
+//login user
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email" : "panita@gmail.com",
+    "password" : "arteaga30"
+}
+
+
+###
+//login admin
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email" : "sergioloimpo@gmail.com",
+    "password" : "arteaga29"
+}
+
+
+
+//view my data
+###
+GET http://localhost:5000/me
+
+//logout session
+###
+DELETE http://localhost:5000/logout
+
+###
+//Get all products
+GET http://localhost:5000/products
+
+###
+//Get Single product
+GET http://localhost:5000/products/6f631272-b61c-4fb1-b6c4-1a6415c58808
+
+###
+//POST Data Product
+POST http://localhost:5000/products
+Content-Type: application/json
+
+{
+    "name" : "Producto 3",
+    "price" : 998
+}
+
+###
+//UPDATE Data Product
+PATCH  http://localhost:5000/products/6f631272-b61c-4fb1-b6c4-1a6415c58808
+Content-Type: application/json
+
+{
+    "name" : "Producto Updated 21",
+    "price" : 9999
+}
+
+###
+//DELETE Data Product
+DELETE   http://localhost:5000/products/6f631272-b61c-4fb1-b6c4-1a6415c58808
+
+
+
