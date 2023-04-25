@@ -1,4 +1,4 @@
-import Product from "../models/ProductModel.js";
+import Product from "../models/Productmodel.js";
 import Users from "../models/UserModel.js";
 import {Op} from "sequelize";
 
@@ -7,7 +7,7 @@ export const getProducts = async (req, res) =>{
         let response;
         if(req.role === "admin"){
             response = await Product.findAll({
-                attributes:['uuid','name','price'],
+                attributes:['uuid','name','price','description'],
                 include:[{
                     model: Users,
                     attributes:['name','email']
@@ -15,7 +15,7 @@ export const getProducts = async (req, res) =>{
             });
         }else{
             response = await Product.findAll({
-                attributes:['uuid','name','price'],
+                attributes:['uuid','name','price','description'],
                 where:{
                     userId: req.userId
                 },
@@ -42,7 +42,7 @@ export const getProductById = async(req, res) =>{
         let response;
         if(req.role === "admin"){
             response = await Product.findOne({
-                attributes:['uuid','name','price'],
+                attributes:['uuid','name','price','description'],
                 where:{
                     id: product.id
                 },
@@ -53,7 +53,7 @@ export const getProductById = async(req, res) =>{
             });
         }else{
             response = await Product.findOne({
-                attributes:['uuid','name','price'],
+                attributes:['uuid','name','price','description'],
                 where:{
                     [Op.and]:[{id: product.id}, {userId: req.userId}]
                 },
@@ -70,11 +70,12 @@ export const getProductById = async(req, res) =>{
 }
 
 export const createProduct = async(req, res) =>{
-    const {name, price} = req.body;
+    const {name, price, description} = req.body;
     try {
         await Product.create({
             name: name,
             price: price,
+            description:description,
             userId: req.userId
         });
         res.status(201).json({msg: "Producto Creado exitosamente"});
@@ -91,16 +92,16 @@ export const updateProduct = async(req, res) =>{
             }
         });
         if(!product) return res.status(404).json({msg: "Datos no encontrados"});
-        const {name, price} = req.body;
+        const {name, price, description} = req.body;
         if(req.role === "admin"){
-            await Product.update({name, price},{
+            await Product.update({name, price,description},{
                 where:{
                     id: product.id
                 }
             });
         }else{
             if(req.userId !== product.userId) return res.status(403).json({msg: "Acceso restringido"});
-            await Product.update({name, price},{
+            await Product.update({name, price, description},{
                 where:{
                     [Op.and]:[{id: product.id}, {userId: req.userId}]
                 }
@@ -120,7 +121,7 @@ export const deleteProduct = async(req, res) =>{
             }
         });
         if(!product) return res.status(404).json({msg: "Datos no encontrados"});
-        const {name, price} = req.body;
+        const {name, price , description} = req.body;
         if(req.role === "admin"){
             await Product.destroy({
                 where:{
@@ -140,3 +141,5 @@ export const deleteProduct = async(req, res) =>{
         res.status(500).json({msg: error.message});
     }
 }
+
+

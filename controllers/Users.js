@@ -28,7 +28,7 @@ export const getUserById = async(req, res) =>{
     }
 }
 
-
+//en el try comprobar que el usuario existe
 export const createUser = async(req, res) =>{
     const {name, email, password, confPassword, role} = req.body;
     if(password !== confPassword) return res.status(400).json({msg: "Contraseña no coincide"});

@@ -48,7 +48,12 @@ const Users = db.define('users',{
         validate:{
             notEmpty:true,
         }
-    }
+    },
+    failedLoginAttempts: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+        allowNull: false
+}
 
 },{
 //freezeTableName: true, Sequelize no intentará cambiar el nombre de 

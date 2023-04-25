@@ -42,7 +42,7 @@ Content-Type: application/json
 
 {
     "email" : "panita@gmail.com",
-    "password" : "arteaga30"
+    "password" : "arteaga3"
 }
 
 ###
@@ -93,22 +93,25 @@ GET http://localhost:5000/products/6f631272-b61c-4fb1-b6c4-1a6415c58808
 
 ###
 //POST Data Product
-POST http://localhost:5000/products
+POST http://localhost:5000/clients
 Content-Type: application/json
 
 {
-    "name" : "Producto 3",
-    "price" : 998
+    "name" : "hola",
+    "email" : "email@email.com",
+    "nit": 123123,
+    "number":1231231, 
 }
 
 ###
 //UPDATE Data Product
-PATCH  http://localhost:5000/products/6f631272-b61c-4fb1-b6c4-1a6415c58808
+PATCH  http://localhost:5000/products/0976adff-a80d-4ab8-be7d-01bda145004e
 Content-Type: application/json
 
 {
     "name" : "Producto Updated 21",
-    "price" : 9999
+    "price" : 9999,
+    "description": "no nula"
 }
 
 ###
